@@ -3,13 +3,13 @@ package com.pjait.byt.pettracker;
 import org.junit.Assert;
 import org.junit.Test;
 
-public class TestToFIX {
+public class PersonTest {
     @Test
     public void getPerson() {
         Person person = new User("A", "WW", "AS", "aaa");
     }
     @Test
-    public void PersonTest() {
+    public void personTest() {
         Person testPerson = new User("John","Smith","johnsmith@gmail.com", "temp");
         Assert.assertNotNull(testPerson);
 
@@ -26,7 +26,7 @@ public class TestToFIX {
     }
 
     @Test
-    public void UserTest() {
+    public void userTest() {
         User testUser = new User("John","Smith","johnsmith@gmail.com","Standard");
         Assert.assertNotNull(testUser);
         Assert.assertEquals("John",testUser.getName());
