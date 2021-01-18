@@ -1,7 +1,9 @@
 package com.pjait.byt.pettracker;
+import javax.xml.crypto.Data;
 import java.sql.Time;
 import java.sql.Timestamp;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 
 public class Pet {
@@ -78,43 +80,61 @@ public class Pet {
         predefinedZone = loc;
     }
 
-    public void showPetStatistics(){
-        //need collar imp
+    public String showPetStatistics(){
+        updateInfo();
+        List<TimeLoc> locationLog = collar.getLocationLog();
+        List<TimePulse> pulseLog = collar.getPulseLog();
+
+        return species + ", " + breed + ", loc: " +
+                locationLog.get(locationLog.size()-1).getLocation().getLat() + ", " +
+                locationLog.get(locationLog.size()-1).getLocation().getLon() +
+                ", bpm: " + pulseLog.get(locationLog.size()-1).getPulse().getBpm();
     }
 
     public void updateInfo(){
-        //collar.registerCurrentPulse();
-        //collar.registerCurrentLocation();
+        collar.registerCurrentPulse();
+        collar.registerCurrentLocation();
     }
 
     public boolean isPetPulseInNormalRange(){
-        /*
         collar.registerCurrentPulse();
-        Pulse currPulse = collar.getPulse();
+        List<TimePulse> pulseLog = collar.getPulseLog();
+        Pulse currPulse = pulseLog.get(pulseLog.size()-1).getPulse();
+
         return lowerLimit.getBpm() < currPulse.getBpm() && upperLimit.getBpm() > currPulse.getBpm() &&
             lowerLimit.getForce() < currPulse.getForce() && upperLimit.getForce() > currPulse.getForce() &&
             lowerLimit.getVolume() < currPulse.getVolume() && upperLimit.getVolume() > currPulse.getVolume();
-        */
-        return  false;
     }
 
     public boolean isPetOutsidePredefinedZone(){
-        /*
         collar.registerCurrentLocation();
-        Location currLoc = new Location();
-        if(currLoc.lat > predefinedZone[0].lat && currLoc.lat < predefinedZone[1].lat &&
-                currLoc.lon > predefinedZone[0].lon && currLoc.lon < predefinedZone[1].lon)
+        Location currLoc = collar.getLocation(java.util.Calendar.getInstance().getTime());
+        if(currLoc.getLat() > predefinedZone[0].getLat() && currLoc.getLat() < predefinedZone[1].getLat() &&
+                currLoc.getLon() > predefinedZone[0].getLon() && currLoc.getLon() < predefinedZone[1].getLon())
             return false;
         return true;
-        */
-        return  false;
     }
 
-    public List<Collar> getCollarHistory(Timestamp ta, Timestamp tb){
-        // calling the CollarHistoryRepository to get list of Collar between two timestamps
-        return  new ArrayList<>();
-
+    public List<Collar> getCollarLog(){
+        return new ArrayList<>();
     }
+    /*
+    class TimeColar{
+        private Collar collar;
+        private Date date;
 
+        public TimeColar(Collar collar, Date date) {
+            this.collar = collar;
+            this.date = date;
+        }
 
+        public Collar getCollar() {
+            return collar;
+        }
+
+        public Date getDate() {
+            return date;
+        }
+    }
+    */
 }
