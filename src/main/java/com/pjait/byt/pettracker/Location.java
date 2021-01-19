@@ -1,4 +1,5 @@
 package com.pjait.byt.pettracker;
+
 public class Location {
     private final double lat;
     private final double lon;

@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
+
 public class Collar {
     private final int size;
     private final String collarColour;
@@ -19,8 +20,13 @@ public class Collar {
     }
 
     public Collar(int size, String collarColour) {
-        this.size = size;
-        this.collarColour = collarColour;
+        if((size == 1 || size == 2 || size == 3 || size == 4) && (collarColour == "Red" || collarColour == "Green" ||collarColour == "Blue")){
+            this.size = size;
+            this.collarColour = collarColour;
+        }else{
+            this.size = -1;
+            this.collarColour = "Error";
+        }
     }
 
     public int getSize() {

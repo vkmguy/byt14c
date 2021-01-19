@@ -9,6 +9,21 @@ import static org.junit.jupiter.api.Assertions.*;
 class CollarTest {
     Collar collar = new Collar(4, "Blue");
 
+    @Test
+    void constructor(){
+        Collar c = new Collar(4, "Red");
+        assertEquals(4, c.getSize());
+        assertEquals("Red", c.getCollarColour());
+
+        Collar c1 = new Collar(5, "Red");
+        assertEquals(-1, c1.getSize());
+        assertEquals("Error", c1.getCollarColour());
+
+        Collar c2 = new Collar(3, "Yellow");
+        assertEquals(-1, c2.getSize());
+        assertEquals("Error", c2.getCollarColour());
+    }
+
 
     @Test
     void getSize() {
