@@ -23,17 +23,12 @@ public class PersonTest {
         Assert.assertEquals("Sue",testPerson.getSurname());
         testPerson.setEmail("marysue@gmail.com");
         Assert.assertEquals("marysue@gmail.com",testPerson.getEmail());
-    }
 
-    @Test
-    public void userTest() {
-        User testUser = new User("John","Smith","johnsmith@gmail.com","Standard");
-        Assert.assertNotNull(testUser);
-        Assert.assertEquals("John",testUser.getName());
-        Assert.assertEquals("Smith",testUser.getSurname());
-        Assert.assertEquals("johnsmith@gmail.com",testUser.getEmail());
-        Assert.assertEquals("Standard",testUser.getAppType());
-        testUser.setAppType("Premium");
-        Assert.assertEquals("Premium",testUser.getAppType());
+        testPerson.setName("mary2");
+        Assert.assertEquals("undefined",testPerson.getName());
+        testPerson.setSurname("sue123");
+        Assert.assertEquals("undefined",testPerson.getSurname());
+        testPerson.setEmail("incorrectMail");
+        Assert.assertEquals("undefined",testPerson.getEmail());
     }
 }
