@@ -6,9 +6,9 @@ public class Pulse {
     private double force;
 
     public Pulse(double bpm, double volume, double force){
-        this.bpm = bpm;
-        this.volume = volume;
-        this.force = force;
+        setBpm(bpm);
+        setVolume(volume);
+        setForce(force);
     }
 
     public double getBpm() {
@@ -16,7 +16,10 @@ public class Pulse {
     }
 
     public void setBpm(double bpm) {
-        this.bpm = bpm;
+        if(bpm>0)
+            this.bpm = bpm;
+        else
+            this.bpm = 0;
     }
 
     public double getVolume() {
@@ -24,7 +27,10 @@ public class Pulse {
     }
 
     public void setVolume(double volume) {
-        this.volume = volume;
+        if (volume>0)
+            this.volume = volume;
+        else
+            this.volume = 0;
     }
 
     public double getForce() {
@@ -32,6 +38,9 @@ public class Pulse {
     }
 
     public void setForce(double force) {
-        this.force = force;
+        if (volume>0)
+            this.force = force;
+        else
+            this.force = 0;
     }
 }
