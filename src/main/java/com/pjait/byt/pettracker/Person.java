@@ -1,14 +1,12 @@
 package com.pjait.byt.pettracker;
 
 
-import java.util.List;
 import java.util.regex.Pattern;
 
 public abstract class Person {
     private String name;
     private String surname;
     private String email;
-    private List<Pet> petList;
     public Person(String name,String surname,String email){
         if(Pattern.matches("[A-Z][a-z]+", name)){
             this.name = name;
@@ -35,12 +33,6 @@ public abstract class Person {
             this.name = name;
         } else
             this.name = "undefined";
-    }
-    public List<Pet> getPetList(){
-        return petList;
-    }
-    public void setPetList(List<Pet> petList){
-        this.petList = petList;
     }
 
     public String getSurname() {
