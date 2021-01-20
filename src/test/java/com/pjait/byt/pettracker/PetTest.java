@@ -1,24 +1,26 @@
 package com.pjait.byt.pettracker;
+import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
 import java.sql.Time;
-
 import static org.junit.Assert.*;
 
 
 public class PetTest {
     Pet pet;
     Collar collar;
+    Location[] location;
 
     @Before
     public void init() {
         collar = new Collar(3, "red");
         pet = new Pet("dog", "chihuahua");
+        Assert.assertNotNull(pet);
         pet.setCollar(collar);
         pet.setFeedingTime(1,1,1);
         pet.setLowerLimit(new Pulse(1,1,1));
         pet.setUpperLimit(new Pulse(2,2,2));
-        Location[] location = new Location[2];
+        location = new Location[2];
         location[0] = new Location(1,1);
         location[1] = new Location(-30,2);
         pet.setPredefinedZone(location);
@@ -30,6 +32,7 @@ public class PetTest {
         assertEquals(pet.getBreed(), "chihuahua");
         assertEquals(pet.getSpecies(), "dog");
         assertEquals(pet.getFeedingTime().toString(), new Time(1,1,1).toString());
+        assertSame(pet.getPredefinedZone(), location);
     }
 
     @Test

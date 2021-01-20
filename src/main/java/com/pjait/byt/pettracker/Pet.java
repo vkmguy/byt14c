@@ -1,10 +1,7 @@
 package com.pjait.byt.pettracker;
-import javax.xml.crypto.Data;
 import java.sql.Time;
-import java.sql.Timestamp;
-import java.util.ArrayList;
-import java.util.Date;
 import java.util.List;
+import java.util.regex.Pattern;
 
 public class Pet {
     private String species;
@@ -16,8 +13,8 @@ public class Pet {
     private Location[] predefinedZone;
 
     public Pet(String species, String breed){
-        this.species = species;
-        this.breed = breed;
+        setSpecies(species);
+        setBreed(breed);
     }
 
     public String getSpecies() {
@@ -25,7 +22,10 @@ public class Pet {
     }
 
     public void setSpecies(String species) {
-        this.species = species;
+        if(species.equals("cat") || species.equals("dog")){
+            this.species = species;
+        } else
+            this.species = "undefined";
     }
 
     public String getBreed() {
@@ -33,7 +33,10 @@ public class Pet {
     }
 
     public void setBreed(String breed) {
-        this.breed = breed;
+        if(Pattern.matches("[a-z]+", breed)){
+            this.breed = breed;
+        } else
+            this.breed = "undefined";
     }
 
     public Time getFeedingTime() {
@@ -77,7 +80,8 @@ public class Pet {
     }
 
     public void setPredefinedZone(Location[] loc) {
-        predefinedZone = loc;
+        if(loc.length==2)
+            predefinedZone = loc;
     }
 
     public String showPetStatistics(){
@@ -114,27 +118,4 @@ public class Pet {
             return false;
         return true;
     }
-
-    public List<Collar> getCollarLog(){
-        return new ArrayList<>();
-    }
-    /*
-    class TimeColar{
-        private Collar collar;
-        private Date date;
-
-        public TimeColar(Collar collar, Date date) {
-            this.collar = collar;
-            this.date = date;
-        }
-
-        public Collar getCollar() {
-            return collar;
-        }
-
-        public Date getDate() {
-            return date;
-        }
-    }
-    */
 }
